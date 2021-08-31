@@ -8,9 +8,12 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    location: {
-      // type: DataTypes.GEOMETRY('POINT'),
-      type: DataTypes.FLOAT, 
+    latitude: {
+      type: DataTypes.FLOAT(10,6), 
+      allowNull: false
+    },
+    longitude: {
+      type: DataTypes.FLOAT(10,6), 
       allowNull: false
     },
     description: {
