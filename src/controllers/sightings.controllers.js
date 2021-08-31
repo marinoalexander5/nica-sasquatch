@@ -27,12 +27,31 @@ exports.createSighting = (req, res) => {
 
 // Retrieve all Sightings from the database.
 exports.getAllSightings = (req, res) => {
-  res.send("Get All Sigthings");
+  Sightings.findAll()
+  .then(data => {
+    res.json(data);
+  })
+  .catch(err => {
+    res.status(500).json({
+      message:
+        err.message || "Some error occurred while retrieving Sightings."
+    });
+  });
 };
 
 // Find a single Sighting with an id
 exports.getSighting = (req, res) => {
-  res.send("Get Single Sigthings");
+  const id = req.params.id;
+  
+  Sightings.findByPk(id)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving Sighting with id=" + id
+      });
+    });
 };
 
 // Update a Sighting by the id
